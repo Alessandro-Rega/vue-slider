@@ -11,24 +11,36 @@
 </head>
 <body>
 
-    <div class="container">
-        <div class="carousel">
-            <div class="immagine-principale">
-                <div id="immagine"></div>
-                <div id="scritta"></div>
-            </div>
-            <div id="immagini-piccole" class="container-immagini">
-                <div id="freccia-su" class="freccia">
-                    <i class="fas fa-chevron-up"></i>
+    <div id="root">
+        <div class="container">
+            <div class="carousel">
+                <div class="immagine-principale">
+                    <div id="immagine">
+                        <img :src="items[current]" alt="..">
+                    </div>
+                    <div id="scritta">
+                        <span id="luogo">{{title[current]}}</span>
+                        <span id="desc">{{text[current]}}</span>
+                    </div>
                 </div>
-                <div id="freccia-giu" class="freccia">
-                    <i class="fas fa-chevron-down"></i>
+                <div id="immagini-piccole" class="container-immagini">
+                    <div id="freccia-su" class="freccia" @click="immaginePrecedente()">
+                        <i class="fas fa-chevron-up"></i>
+                    </div>
+                    <div v-for="(item,i) in items" class="immagine-piccola" :class="i == current ? 'selezionata' : ' ' ">
+                        <img :src="item" alt=".." @click="current = i">
+                    </div>
+                    <div id="freccia-giu" class="freccia" @click="prossimaImmagine()">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
 
+    <!-- vuejs script -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <!-- javascript -->
     <script src="js/script.js"></script>
     <!-- fontawesome -->
